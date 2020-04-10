@@ -1,0 +1,62 @@
+//  C program to reverse a string using stack
+#include <stdio.h>
+#include <string.h>
+#define max 50	
+int top=-1,a;
+char stack_string[max];
+void pushChar(char a);
+char popChar(void);
+int isEmpty(void);
+int isFull(void);
+void main()
+{
+    char string[max];
+    int i;
+    printf("Enter a string= ");
+    scanf("%s",string); 
+    for(i=0; i<strlen(string); i++)
+        pushChar(string[i]);
+    for(i=0; i<strlen(string); i++)
+        string[i]=popChar();
+    printf(" The reversed String is: %s\n",string);
+    
+}
+ 
+void pushChar(char a)
+{
+    if(isFull())
+    {
+        printf("Stack is overflown\n");
+        return;
+    }
+    top=top+1;
+    stack_string[top]=a;
+}
+ 
+char popChar()
+{
+
+    if(isEmpty())
+    {
+        printf("Stack is underflown\n");
+        return 0;
+    }
+    a = stack_string[top];
+    top=top-1;
+    return a;
+}
+ 
+int isEmpty()
+{
+    if(top==-1)
+        return 1;
+    else
+        return 0;
+}
+int isFull()
+{
+    if(top==max-1)
+        return 1;
+    else
+        return 0;
+}
